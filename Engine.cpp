@@ -16,7 +16,6 @@ using namespace std;
 
 int UEngine::KeyCode = 0;
 UEngine* UEngine::Instance = nullptr;
-
 UEngine::UEngine()
 {
 	DeltaSeconds = 0;

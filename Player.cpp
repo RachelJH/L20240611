@@ -1,12 +1,12 @@
 #include "Player.h"
 #include "Engine.h"
-
+#include "SDL.h"
 APlayer::APlayer()
 {
 	//AActor::AActor();
 	X = 1;
 	Y = 1;
-	Shape = ' ';
+	Shape = 'P';
 	Layer = 4;
 	IsCollision = true;
 	R = 0;
@@ -16,6 +16,9 @@ APlayer::APlayer()
 	ColorKeyR = 255;
 	ColorKeyG = 0;
 	ColorKeyB = 255;
+
+	Filename = "data/player.bmp";
+	LoadTexture(Filename);
 }
 
 APlayer::APlayer(int NewX, int NewY, char NewShape)
@@ -47,7 +50,7 @@ APlayer::~APlayer()
 
 void APlayer::Tick()
 {
-	switch (UEngine::KeyCode)
+	/*switch (UEngine::KeyCode)
 	{
 	case 'W':
 	case 'w':
@@ -77,6 +80,47 @@ void APlayer::Tick()
 			X++;
 		}
 		break;
+	}*/
+
+	switch (GEngine->MyEvent.type)
+	{
+	case SDL_KEYDOWN:
+		switch (GEngine->MyEvent.key.keysym.sym)
+		{
+		case SDLK_w:
+		case SDLK_UP:
+			if (Predict(X, Y - 1))
+			{
+				Y--;
+			}
+			SpirteIndexY = 2;
+			break;
+		case SDLK_s:
+		case SDLK_DOWN:
+			if (Predict(X, Y + 1))
+			{
+				Y++;
+			}
+			SpirteIndexY = 3;
+			break;
+		case SDLK_a:
+		case SDLK_LEFT:
+			if (Predict(X - 1, Y))
+			{
+				X--;
+			}
+			SpirteIndexY = 0;
+			break;
+		case SDLK_d:
+		case SDLK_RIGHT:
+			if (Predict(X + 1, Y))
+			{
+				X++;
+			}
+			SpirteIndexY = 1;
+			break;
+		}
+
 	}
 }
 
