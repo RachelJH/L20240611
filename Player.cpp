@@ -16,6 +16,9 @@ APlayer::APlayer()
 	ColorKeyR = 255;
 	ColorKeyG = 0;
 	ColorKeyB = 255;
+	ElapsedTime = 0;
+	SpirteIndexX = 0;
+	SpirteIndexY = 0;
 
 	Filename = "data/player.bmp";
 	LoadTexture(Filename);
@@ -37,6 +40,9 @@ APlayer::APlayer(int NewX, int NewY, char NewShape)
 	ColorKeyR = 255;
 	ColorKeyG = 0;
 	ColorKeyB = 255;
+	ElapsedTime = 0;
+	SpirteIndexX = 0;
+	SpirteIndexY = 0;
 
 	Filename = "data/player.bmp";
 	LoadTexture(Filename);
@@ -50,38 +56,6 @@ APlayer::~APlayer()
 
 void APlayer::Tick()
 {
-	/*switch (UEngine::KeyCode)
-	{
-	case 'W':
-	case 'w':
-		if (Predict(X, Y - 1))
-		{
-			Y--;
-		}
-		break;
-	case 'S':
-	case 's':
-		if (Predict(X, Y + 1))
-		{
-			Y++;
-		}
-		break;
-	case 'A':
-	case 'a':
-		if (Predict(X - 1, Y))
-		{
-			X--;
-		}
-		break;
-	case 'D':
-	case 'd':
-		if (Predict(X + 1, Y))
-		{
-			X++;
-		}
-		break;
-	}*/
-
 	switch (GEngine->MyEvent.type)
 	{
 	case SDL_KEYDOWN:
